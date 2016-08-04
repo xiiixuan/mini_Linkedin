@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.jiuzhang.guojing.awesomeresume.model.Education;
@@ -19,6 +21,7 @@ import java.util.Arrays;
 public class EducationEditActivity extends AppCompatActivity {
 
     public static final String KEY_EDUCATION = "education";
+    public static final String KEY_EDUCATION_ID = "education_id";
 
     private Education education;
 
@@ -26,6 +29,8 @@ public class EducationEditActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education_edit);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         education = getIntent().getParcelableExtra(KEY_EDUCATION);
         if (education != null) {
@@ -41,7 +46,10 @@ public class EducationEditActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.ic_save) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else if (item.getItemId() == R.id.ic_save) {
             saveAndExit();
             return true;
         }
@@ -59,6 +67,16 @@ public class EducationEditActivity extends AppCompatActivity {
                 .setText(DateUtils.dateToString(education.endDate));
         ((EditText) findViewById(R.id.education_edit_courses))
                 .setText(TextUtils.join("\n", education.courses));
+
+        findViewById(R.id.education_edit_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(KEY_EDUCATION_ID, education.id);
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
+        });
     }
 
     private void saveAndExit() {

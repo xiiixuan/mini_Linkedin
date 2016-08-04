@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_medium"
+        android:padding="@dimen/spacing_medium"
         android:orientation="vertical">
 
         <LinearLayout
@@ -59,8 +59,7 @@
                 android:layout_weight="1"
                 android:textSize="25sp"
                 android:textAllCaps="true"
-                android:text="Education"
-                tools:text="Education" />
+                android:text="@string/section_education"/>
 
             <ImageButton
                 android:id="@+id/add_education_btn"
@@ -85,7 +84,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp">
 
             <TextView
@@ -94,8 +93,7 @@
                 android:layout_weight="1"
                 android:textSize="25sp"
                 android:textAllCaps="true"
-                android:text="Experience"
-                tools:text="Experience" />
+                android:text="@string/section_experience"/>
 
             <ImageButton
                 android:id="@+id/add_experience_btn"
@@ -120,7 +118,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp">
 
             <TextView
@@ -129,8 +127,7 @@
                 android:layout_weight="1"
                 android:textSize="25sp"
                 android:textAllCaps="true"
-                android:text="Projects"
-                tools:text="Projects" />
+                android:text="@string/section_projects"/>
 
             <ImageButton
                 android:id="@+id/add_project_btn"
@@ -143,32 +140,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/projects"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="AwesomeResume - an Android resume app (Mar ~ Aug 2015)"
-                tools:text="AwesomeResume - an Android resume app (Mar ~ Aug 2015)" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@mipmap/ic_mode_edit_black_18dp"
-                android:alpha="0.7"
-                android:background="?attr/selectableItemBackground"/>
+            android:orientation="vertical">
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="- Completed xxx using xxx\n- Algorithm\n- Network" />
 
     </LinearLayout>
 

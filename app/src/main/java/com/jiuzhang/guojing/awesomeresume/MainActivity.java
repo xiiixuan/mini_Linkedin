@@ -3,8 +3,10 @@ package com.jiuzhang.guojing.awesomeresume;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,8 +73,13 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQ_CODE_EDIT_EDUCATION:
-                    Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
-                    updateEducation(education);
+                    String educationId = data.getStringExtra(EducationEditActivity.KEY_EDUCATION_ID);
+                    if (educationId != null) {
+                        deleteEducation(educationId);
+                    } else {
+                        Education education = data.getParcelableExtra(EducationEditActivity.KEY_EDUCATION);
+                        updateEducation(education);
+                    }
                     break;
                 case REQ_CODE_EDIT_EXPERIENCE:
                     Experience experience = data.getParcelableExtra(ExperienceEditActivity.KEY_EXPERIENCE);
@@ -204,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         boolean found = false;
         for (int i = 0; i < educations.size(); ++i) {
             Education e = educations.get(i);
-            if (e.school.equals(education.school)) {
+            if (TextUtils.equals(e.id, education.id)) {
                 found = true;
                 educations.set(i, education);
                 break;
@@ -238,5 +245,9 @@ public class MainActivity extends AppCompatActivity {
         ModelUtils.save(this, MODEL_EXPERIENCES, experiences);
 
         setupExperiences();
+    }
+
+    private void deleteEducation(@NonNull String educationId) {
+        Snackbar.make(null, "delete", Snackbar.LENGTH_LONG).show();
     }
 }
